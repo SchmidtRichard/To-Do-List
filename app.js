@@ -17,38 +17,50 @@ app.get("/", function(req, res) {
 
   //Check the current day of the week happens to be on a weekend
   var today = new Date();
-  var currentDay = today.getDay();
 
-  //Check if the current day is a saturday or a sunday
-  var day = "";
+  var options = {
+    weekday: "long",
+    day: "numeric",
+    month: "long"
+  };
 
-  //If there are more than 5 if else statements use a switch statement
-  switch (currentDay) {
-    case 0:
-      day = "Sunday";
-      break;
-    case 1:
-      day = "Monday";
-      break;
-    case 2:
-      day = "Tuesday";
-      break;
-    case 3:
-      day = "Wednesday";
-      break;
-    case 4:
-      day = "Thursday";
-      break;
-    case 5:
-      day = "Friday";
-      break;
-    case 6:
-      day = "Saturday";
-      break;
-    default:
-      //Throw an error when the current day is not covered by any of the cases (will not happen because all days are there)
-      console.log("Error: current day is equal to" + currentDay);
-  }
+  var day = today.toLocaleDateString("en-USD", options);
+
+
+  //Below how do to using Switch statement
+
+  // var currentDay = today.getDay();
+  //
+  // //Check if the current day is a saturday or a sunday
+  // var day = "";
+  //
+  // //If there are more than 5 if else statements use a switch statement
+  // switch (currentDay) {
+  //   case 0:
+  //     day = "Sunday";
+  //     break;
+  //   case 1:
+  //     day = "Monday";
+  //     break;
+  //   case 2:
+  //     day = "Tuesday";
+  //     break;
+  //   case 3:
+  //     day = "Wednesday";
+  //     break;
+  //   case 4:
+  //     day = "Thursday";
+  //     break;
+  //   case 5:
+  //     day = "Friday";
+  //     break;
+  //   case 6:
+  //     day = "Saturday";
+  //     break;
+  //   default:
+  //     //Throw an error when the current day is not covered by any of the cases (will not happen because all days are there)
+  //     console.log("Error: current day is equal to" + currentDay);
+  //}
 
   // if (currentDay === 6) {
   //   day = "Saturday";
