@@ -11,6 +11,17 @@
 <body>
 
   <h1> <%= kindOfDay %> </h1>
+  <ul>
+    <% for(var i = 0; i < newListItems.length; i++){ %>
+    <li><%= newListItems[i] %></li>
+    <% } %>
+  </ul>
+
+  <form action="/" method="POST">
+    <label for="">Item:</label>
+    <input type="text" name="newItem" placeholder="Enter Your New Item" autofocus>
+    <button type="submit">Add Item!</button>
+  </form>
 
 </body>
 

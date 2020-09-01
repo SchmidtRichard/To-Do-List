@@ -9,8 +9,16 @@ const bodyParser = require("body-parser");
 //Initialize a new express app
 const app = express();
 
+//Grab the value entered the text box in list.ejs - newItem
+var items = [];
+
 //Tell the app to use EJS as its view engine
 app.set("view engine", "ejs");
+
+//Tell the app to use body-parser
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 //Create the first get route on the home route
 app.get("/", function(req, res) {
@@ -79,9 +87,32 @@ app.get("/", function(req, res) {
   // }
 
   res.render("list", {
-    kindOfDay: day
+    kindOfDay: day,
+    newListItems: items
   });
 });
+
+//Catch the POST request made to the route (/)
+app.post("/", function(req, res) {
+
+  //Grab the value entered the text box in list.ejs - newItem
+  var item = req.body.newItem;
+
+  //Append item to the array items
+  items.push(item);
+
+  res.redirect("/");
+
+  console.log(item);
+});
+
+
+
+
+
+
+
+
 
 //Set up the server to listen to port 3000
 app.listen(3000, function() {
