@@ -18,7 +18,10 @@ app.set("view engine", "ejs");
 //Tell the app to use body-parser
 app.use(bodyParser.urlencoded({
   extended: true
-}))
+}));
+
+//Tell the app to use all the statics files inside the public folder
+app.use(express.static("public"));
 
 //Create the first get route on the home route
 app.get("/", function(req, res) {
@@ -105,14 +108,6 @@ app.post("/", function(req, res) {
 
   console.log(item);
 });
-
-
-
-
-
-
-
-
 
 //Set up the server to listen to port 3000
 app.listen(3000, function() {
