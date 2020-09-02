@@ -10,7 +10,10 @@ const bodyParser = require("body-parser");
 const app = express();
 
 //Grab the value entered the text box in list.ejs - newItem
-var items = [];
+let items = [];
+
+//Grab the value entered in the text box in the list.ejs for the work route
+let workItems = [];
 
 //Tell the app to use EJS as its view engine
 app.set("view engine", "ejs");
@@ -27,15 +30,15 @@ app.use(express.static("public"));
 app.get("/", function(req, res) {
 
   //Check the current day of the week happens to be on a weekend
-  var today = new Date();
+  let today = new Date();
 
-  var options = {
+  let options = {
     weekday: "long",
     day: "numeric",
     month: "long"
   };
 
-  var day = today.toLocaleDateString("en-USD", options);
+  let day = today.toLocaleDateString("en-USD", options);
 
 
   //Below how do to using Switch statement
@@ -90,7 +93,7 @@ app.get("/", function(req, res) {
   // }
 
   res.render("list", {
-    kindOfDay: day,
+    listTitle: day,
     newListItems: items
   });
 });
@@ -99,14 +102,35 @@ app.get("/", function(req, res) {
 app.post("/", function(req, res) {
 
   //Grab the value entered the text box in list.ejs - newItem
-  var item = req.body.newItem;
+  let item = req.body.newItem;
 
-  //Append item to the array items
-  items.push(item);
+  if (req.body.list === "Work") {
+    //Append item to the array workItems
+    workItems.push(item);
 
-  res.redirect("/");
+    //Redirect to the work route -> app.get("/work", function(req, res) {
+    res.redirect("/work");
+  } else {
+    //Append item to the array items
+    items.push(item);
+    res.redirect("/");
+  }
 
   console.log(item);
+  console.log(req.body);
+});
+
+//Create the work get route
+app.get("/work", function(req, res) {
+  res.render("list", {
+    listTitle: "Work List",
+    newListItems: workItems
+  });
+});
+
+
+app.get("/about", function(req, res) {
+  res.render("about");
 });
 
 //Set up the server to listen to port 3000

@@ -1,35 +1,24 @@
 <!-- EJS TEMPLATE -->
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<%- include("header") -%>
 
-<head>
-  <meta charset="utf-8" />
-  <title>EJS - To Do List</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+<div class="box" id="heading">
+  <h1> <%= listTitle %> </h1>
+</div>
 
-<body>
-
-  <div class="box" id="heading">
-    <h1> <%= kindOfDay %> </h1>
+<div class="box">
+  <% for(var i = 0; i < newListItems.length; i++){ %>
+  <div class="item">
+    <input type="checkbox">
+    <p><%= newListItems[i] %></p>
   </div>
+  <% } %>
 
-  <div class="box">
-    <% for(var i = 0; i < newListItems.length; i++){ %>
-    <div class="item">
-      <input type="checkbox">
-      <p><%= newListItems[i] %></p>
-    </div>
-    <% } %>
+  <form class="item" action="/" method="POST">
+    <input type="text" name="newItem" placeholder="New Item" autofocus autocomplete="off">
+    <button type="submit" name="list" value=<%= listTitle %>>+</button>
+  </form>
 
-    <form class="item" action="/" method="POST">
-      <input type="text" name="newItem" placeholder="New Item" autofocus autocomplete="off">
-      <button type="submit">+</button>
-    </form>
+</div>
 
-  </div>
-
-</body>
-
-</html>
+<%- include("footer") -%>
