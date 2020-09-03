@@ -1,10 +1,8 @@
 //Check the current day of the week happens to be on a weekend
 
-module.exports.getDate = getDate;
-
-//console.log(module);
-
-function getDate() {
+//Change the function to a variable (getDate) binded to an anonymous function
+//module.exports.getDate = function() { - short version below
+exports.getDate = function() {
 
   let today = new Date();
 
@@ -19,11 +17,11 @@ function getDate() {
 
   //Short version of the above code
   return today.toLocaleDateString("en-USD", options);
-}
+};
 
-module.exports.getDay = getDay;
-
-function getDay() {
+//Change the function to a variable (getDate) binded to an anonymous function
+//module.exports.getDay = function() { - short version below
+exports.getDay = function() {
 
   let today = new Date();
 
@@ -35,8 +33,6 @@ function getDay() {
   // return day;
 
   return today.toLocaleDateString("en-USD", options);
-
-
-}
+};
 
 console.log(module.exports);

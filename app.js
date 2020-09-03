@@ -34,10 +34,10 @@ app.use(express.static("public"));
 app.get("/", function(req, res) {
 
   //Get the full date
-  //let day = date.getDate();
+  let day = date.getDate();
 
   //Get the day of the week only
-  let day = date.getDay();
+  //let day = date.getDay();
 
   res.render("list", {
     listTitle: day,
