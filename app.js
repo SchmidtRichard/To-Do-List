@@ -6,6 +6,10 @@ const express = require("express");
 //Require body-parser module
 const bodyParser = require("body-parser");
 
+//Require the date.js local module
+const date = require(__dirname + "/date.js");
+//console.log(date());
+
 //Initialize a new express app
 const app = express();
 
@@ -29,16 +33,16 @@ app.use(express.static("public"));
 //Create the first get route on the home route
 app.get("/", function(req, res) {
 
-  //Check the current day of the week happens to be on a weekend
-  let today = new Date();
+  //Get the full date
+  //let day = date.getDate();
 
-  let options = {
-    weekday: "long",
-    day: "numeric",
-    month: "long"
-  };
+  //Get the day of the week only
+  let day = date.getDay();
 
-  let day = today.toLocaleDateString("en-USD", options);
+  res.render("list", {
+    listTitle: day,
+    newListItems: items
+  });
 
 
   //Below how do to using Switch statement
@@ -92,10 +96,7 @@ app.get("/", function(req, res) {
   //   day = "Friday";
   // }
 
-  res.render("list", {
-    listTitle: day,
-    newListItems: items
-  });
+
 });
 
 //Catch the POST request made to the route (/)
