@@ -14,10 +14,10 @@ const date = require(__dirname + "/date.js");
 const app = express();
 
 //Grab the value entered the text box in list.ejs - newItem
-let items = [];
+const items = [];
 
 //Grab the value entered in the text box in the list.ejs for the work route
-let workItems = [];
+const workItems = [];
 
 //Tell the app to use EJS as its view engine
 app.set("view engine", "ejs");
@@ -34,10 +34,10 @@ app.use(express.static("public"));
 app.get("/", function(req, res) {
 
   //Get the full date
-  let day = date.getDate();
+  const day = date.getDate();
 
   //Get the day of the week only
-  //let day = date.getDay();
+  //const day = date.getDay();
 
   res.render("list", {
     listTitle: day,
@@ -95,15 +95,13 @@ app.get("/", function(req, res) {
   // } else if (currentDay === 5) {
   //   day = "Friday";
   // }
-
-
 });
 
 //Catch the POST request made to the route (/)
 app.post("/", function(req, res) {
 
   //Grab the value entered the text box in list.ejs - newItem
-  let item = req.body.newItem;
+  const item = req.body.newItem;
 
   if (req.body.list === "Work") {
     //Append item to the array workItems

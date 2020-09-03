@@ -4,9 +4,9 @@
 //module.exports.getDate = function() { - short version below
 exports.getDate = function() {
 
-  let today = new Date();
+  const today = new Date();
 
-  let options = {
+  const options = {
     weekday: "long",
     day: "numeric",
     month: "long"
@@ -23,9 +23,9 @@ exports.getDate = function() {
 //module.exports.getDay = function() { - short version below
 exports.getDay = function() {
 
-  let today = new Date();
+  const today = new Date();
 
-  let options = {
+  const options = {
     weekday: "long"
   };
 
